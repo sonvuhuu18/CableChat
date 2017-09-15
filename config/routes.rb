@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  root "chat_rooms#index"
   devise_for :users
-  resources :chat_rooms, except: [:edit, :update, :destroy]
-  mount ActionCable.server => "/cable"
+
+  resources :chat_rooms, only: [:new, :create, :show, :index]
+
+  mount ActionCable.server => '/cable'
+
+  root 'chat_rooms#index'
 end
